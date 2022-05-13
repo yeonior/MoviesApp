@@ -10,10 +10,12 @@ import UIKit
 final class HomeViewController: UIViewController {
     
     // MARK: - Subviews
-    private let homeFeedTable: UITableView = {
-        $0.register(CollectionViewTableViewCell.self, forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
-        return $0
-    }(UITableView(frame: .zero, style: .grouped))
+    private let tableView: UITableView = {
+        let tableView = UITableView(frame: .zero, style: .grouped)
+        tableView.register(CollectionViewTableViewCell.self,
+                           forCellReuseIdentifier: CollectionViewTableViewCell.identifier)
+        return tableView
+    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -23,20 +25,27 @@ final class HomeViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        configureHomeFeedTable()
+        configureTableViewFrame()
     }
     
     // MARK: - Methods
     private func configureUI() {
         view.backgroundColor = .systemBackground
         
-        homeFeedTable.dataSource = self
-        homeFeedTable.delegate = self
-        view.addSubview(homeFeedTable)
+        tableView.dataSource = self
+        tableView.delegate = self
+        view.addSubview(tableView)
+        
+        let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        tableView.tableHeaderView = headerView
     }
     
-    private func configureHomeFeedTable() {
-        homeFeedTable.frame = view.bounds
+    private func configureTableViewFrame() {
+        tableView.frame = view.bounds
+    }
+    
+    @objc func reloadButtonDidTap() {
+        print("1")
     }
 }
 
