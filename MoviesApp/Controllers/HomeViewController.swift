@@ -26,6 +26,7 @@ final class HomeViewController: UIViewController {
         configureUI()
         configureNavigationBar()
         getTrendingMovies()
+        getTrendingTVShows()
     }
     
     override func viewDidLayoutSubviews() {
@@ -59,8 +60,20 @@ final class HomeViewController: UIViewController {
     }
     
     private func getTrendingMovies() {
-        guard let url = URL(string: Constants.trendingURL) else { return }
+        guard let url = URL(string: Constants.trendingMoviesURL) else { return }
         NetworkManager.shared.request(fromURL: url) { (result: Result<TrendingMoviesResponse, Error>) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getTrendingTVShows() {
+        guard let url = URL(string: Constants.trendingTVShowsURL) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<TrendingTVShows, Error>) in
             switch result {
             case .success(let response):
                 print(response)

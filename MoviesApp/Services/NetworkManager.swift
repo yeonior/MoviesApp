@@ -14,7 +14,8 @@ protocol NetworkManagerProtocol {
 struct Constants {
     static let apiKey = ""
     static let baseURL = "https://api.themoviedb.org"
-    static let trendingURL = baseURL + "/3/trending/all/day?api_key=" + apiKey
+    static let trendingMoviesURL = baseURL + "/3/trending/movie/day?api_key=" + apiKey
+    static let trendingTVShowsURL = baseURL + "/3/trending/tv/day?api_key=" + apiKey
 }
 
 final class NetworkManager: NetworkManagerProtocol {
