@@ -10,7 +10,7 @@ import UIKit
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
-    let sectionTitles = ["Trending movies", "Popular", "Trending TV shows", "Upcoming movies", "Top rated"]
+    let sectionTitles = ["Trending movies", "Trending TV shows", "Popular", "Upcoming movies", "Top rated"]
     
     // MARK: - Subviews
     private let tableView: UITableView = {
@@ -95,7 +95,7 @@ extension HomeViewController: UITableViewDataSource {
         guard let header = view as? UITableViewHeaderFooterView else { return }
         header.textLabel?.font = .systemFont(ofSize: 18, weight: .semibold)
         header.textLabel?.textColor = .white
-        header.textLabel?.text = header.textLabel?.text?.lowercased()
+        header.textLabel?.text = header.textLabel?.text?.capitalizeFirstLetter()
     }
 }
 
