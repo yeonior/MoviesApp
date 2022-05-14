@@ -21,6 +21,7 @@ final class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        configureNavigationBar()
     }
     
     override func viewDidLayoutSubviews() {
@@ -44,8 +45,13 @@ final class HomeViewController: UIViewController {
         tableView.frame = view.bounds
     }
     
-    @objc func reloadButtonDidTap() {
-        print("1")
+    private func configureNavigationBar() {
+        navigationItem.rightBarButtonItems = [
+            UIBarButtonItem(image: UIImage(systemName: "person"), style: .done, target: self, action: nil),
+            UIBarButtonItem(image: UIImage(systemName: "play.rectangle"), style: .done, target: self, action: nil)
+        ]
+        
+        navigationController?.navigationBar.tintColor = .label
     }
 }
 
@@ -74,5 +80,16 @@ extension HomeViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         200
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+extension HomeViewController {
+    // making the navigation bar scrollable
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let defaultOffset = view.safeAreaInsets.top
+        let offset = scrollView.contentOffset.y + defaultOffset
+        
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
     }
 }
