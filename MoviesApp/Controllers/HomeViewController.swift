@@ -25,6 +25,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNavigationBar()
+        getTrendingMovies()
     }
     
     override func viewDidLayoutSubviews() {
@@ -55,6 +56,18 @@ final class HomeViewController: UIViewController {
         ]
         
         navigationController?.navigationBar.tintColor = .label
+    }
+    
+    private func getTrendingMovies() {
+        guard let url = URL(string: Constants.trendingURL) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<TrendingMoviesResponse, Error>) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 

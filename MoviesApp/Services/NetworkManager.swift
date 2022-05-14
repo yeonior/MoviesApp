@@ -1,0 +1,58 @@
+//
+//  NetworkManager.swift
+//  MoviesApp
+//
+//  Created by Ruslan on 14.05.2022.
+//
+
+import Foundation
+
+protocol NetworkManagerProtocol {
+    func request<T: Decodable>(fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void)
+}
+
+struct Constants {
+    static let apiKey = ""
+    static let baseURL = "https://api.themoviedb.org"
+    static let trendingURL = baseURL + "/3/trending/all/day?api_key=" + apiKey
+}
+
+final class NetworkManager: NetworkManagerProtocol {
+    
+    // MARK: - Properties
+    static let shared = NetworkManager()
+    private let sessionConfiguration = URLSessionConfiguration.default
+    
+    // MARK: - Init
+    private init() {}
+    
+    // MARK: - Methods
+    func request<T: Decodable>(fromURL url: URL, completion: @escaping (Result<T, Error>) -> Void) {
+        
+        let request = URLRequest(url: url)
+        let completionOnMain: (Result<T, Error>) -> Void = { result in
+            DispatchQueue.main.async {
+                completion(result)
+            }
+        }
+
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            // checking the error
+            if let error = error {
+                completionOnMain(.failure(error))
+                return
+            }
+            
+            // trying to get data
+            guard let data = data else { return }
+            do {
+                let elements = try JSONDecoder().decode(T.self, from: data)
+                completionOnMain(.success(elements))
+            } catch {
+                debugPrint("Could not translate the data to the requested type.")
+                completionOnMain(.failure(error))
+            }
+        }.resume()
+    }
+}
