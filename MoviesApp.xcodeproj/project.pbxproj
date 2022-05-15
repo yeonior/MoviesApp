@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A23B20B32830F23D00B7CDEF /* AnotherMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B20B22830F23D00B7CDEF /* AnotherMovie.swift */; };
+		A23B20B92831127A00B7CDEF /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = A23B20B82831127A00B7CDEF /* Response.swift */; };
 		A248FC2C282E19B300802DFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248FC2B282E19B300802DFA /* AppDelegate.swift */; };
 		A248FC2E282E19B300802DFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248FC2D282E19B300802DFA /* SceneDelegate.swift */; };
 		A248FC30282E19B300802DFA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248FC2F282E19B300802DFA /* MainTabBarViewController.swift */; };
@@ -25,6 +27,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A23B20B22830F23D00B7CDEF /* AnotherMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnotherMovie.swift; sourceTree = "<group>"; };
+		A23B20B82831127A00B7CDEF /* Response.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		A248FC28282E19B300802DFA /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A248FC2B282E19B300802DFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A248FC2D282E19B300802DFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -152,7 +156,9 @@
 		A248FC4E282E289C00802DFA /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A23B20B82831127A00B7CDEF /* Response.swift */,
 				A2924D20283027AB0039BF28 /* Movie.swift */,
+				A23B20B22830F23D00B7CDEF /* AnotherMovie.swift */,
 				A2924D25283032650039BF28 /* TVShow.swift */,
 			);
 			path = Models;
@@ -264,10 +270,12 @@
 				A248FC4B282E1F8500802DFA /* SearchViewController.swift in Sources */,
 				A248FC30282E19B300802DFA /* MainTabBarViewController.swift in Sources */,
 				A2924D2428302F130039BF28 /* String + extension.swift in Sources */,
+				A23B20B92831127A00B7CDEF /* Response.swift in Sources */,
 				A2924D1F28300E550039BF28 /* NetworkManager.swift in Sources */,
 				A248FC52282E28E700802DFA /* CollectionViewTableViewCell.swift in Sources */,
 				A248FC4D282E1F9E00802DFA /* DownloadsViewController.swift in Sources */,
 				A248FC54282E3ED700802DFA /* HeroHeaderView.swift in Sources */,
+				A23B20B32830F23D00B7CDEF /* AnotherMovie.swift in Sources */,
 				A248FC2C282E19B300802DFA /* AppDelegate.swift in Sources */,
 				A248FC2E282E19B300802DFA /* SceneDelegate.swift in Sources */,
 				A248FC49282E1F6900802DFA /* UpcomingViewController.swift in Sources */,

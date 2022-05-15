@@ -8,19 +8,6 @@
 import Foundation
 
 // MARK: - TVShow
-struct TrendingTVShows: Codable {
-    let page: Int
-    let results: [TVShow]
-    let totalPages, totalResults: Int
-
-    enum CodingKeys: String, CodingKey {
-        case page, results
-        case totalPages = "total_pages"
-        case totalResults = "total_results"
-    }
-}
-
-// MARK: - Result
 struct TVShow: Codable {
     let originalLanguage, firstAirDate, posterPath, name: String
     let voteAverage: Double

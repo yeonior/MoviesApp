@@ -25,8 +25,11 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNavigationBar()
-        getTrendingMovies()
-        getTrendingTVShows()
+//        getTrendingMovies()
+//        getTrendingTVShows()
+//        getUpcomingMovies()
+//        getPopularMovies()
+//        getTopRatedMovies()
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,7 +64,7 @@ final class HomeViewController: UIViewController {
     
     private func getTrendingMovies() {
         guard let url = URL(string: Constants.trendingMoviesURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<TrendingMoviesResponse, Error>) in
+        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<Movie>, Error>) in
             switch result {
             case .success(let response):
                 print(response)
@@ -73,7 +76,43 @@ final class HomeViewController: UIViewController {
     
     private func getTrendingTVShows() {
         guard let url = URL(string: Constants.trendingTVShowsURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<TrendingTVShows, Error>) in
+        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<TVShow>, Error>) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getUpcomingMovies() {
+        guard let url = URL(string: Constants.upcomingMoviesURL) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<AnotherMovie>, Error>) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getPopularMovies() {
+        guard let url = URL(string: Constants.popularMoviesURL) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<AnotherMovie>, Error>) in
+            switch result {
+            case .success(let response):
+                print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getTopRatedMovies() {
+        guard let url = URL(string: Constants.topRatedURL) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<AnotherMovie>, Error>) in
             switch result {
             case .success(let response):
                 print(response)

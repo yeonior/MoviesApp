@@ -16,6 +16,9 @@ struct Constants {
     static let baseURL = "https://api.themoviedb.org"
     static let trendingMoviesURL = baseURL + "/3/trending/movie/day?api_key=" + apiKey
     static let trendingTVShowsURL = baseURL + "/3/trending/tv/day?api_key=" + apiKey
+    static let upcomingMoviesURL = baseURL + "/3/movie/upcoming?api_key=" + apiKey + "&language=en-US&page=1"
+    static let popularMoviesURL = baseURL + "/3/movie/popular?api_key=" + apiKey + "&language=en-US&page=1"
+    static let topRatedURL = baseURL + "/3/movie/top_rated?api_key=" + apiKey + "&language=en-US&page=1"
 }
 
 final class NetworkManager: NetworkManagerProtocol {
