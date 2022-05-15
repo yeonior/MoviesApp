@@ -24,6 +24,7 @@
 		A2924D21283027AB0039BF28 /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2924D20283027AB0039BF28 /* Movie.swift */; };
 		A2924D2428302F130039BF28 /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2924D2328302F130039BF28 /* String + extension.swift */; };
 		A2924D26283032650039BF28 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2924D25283032650039BF28 /* TVShow.swift */; };
+		A2B3B7562831218C001029C2 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +47,7 @@
 		A2924D20283027AB0039BF28 /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		A2924D2328302F130039BF28 /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 		A2924D25283032650039BF28 /* TVShow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TVShow.swift; sourceTree = "<group>"; };
+		A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -168,6 +170,7 @@
 			isa = PBXGroup;
 			children = (
 				A248FC51282E28E700802DFA /* CollectionViewTableViewCell.swift */,
+				A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */,
 				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
 			);
 			path = Views;
@@ -267,6 +270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A2924D26283032650039BF28 /* TVShow.swift in Sources */,
+				A2B3B7562831218C001029C2 /* TitleCollectionViewCell.swift in Sources */,
 				A248FC4B282E1F8500802DFA /* SearchViewController.swift in Sources */,
 				A248FC30282E19B300802DFA /* MainTabBarViewController.swift in Sources */,
 				A2924D2428302F130039BF28 /* String + extension.swift in Sources */,
