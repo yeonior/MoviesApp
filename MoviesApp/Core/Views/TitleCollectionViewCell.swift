@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 final class TitleCollectionViewCell: UICollectionViewCell {
     
@@ -32,11 +33,16 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        configurePosterImageView()
+        configurePosterImageViewFrame()
     }
     
     // MARK: - Methods
-    private func configurePosterImageView() {
+    private func configurePosterImageViewFrame() {
         posterImageView.frame = contentView.bounds
+    }
+    
+    private func configurePosterImageView(with model: String) {
+        guard let url = URL(string: model) else { return }
+        posterImageView.sd_setImage(with: url, completed: nil)
     }
 }

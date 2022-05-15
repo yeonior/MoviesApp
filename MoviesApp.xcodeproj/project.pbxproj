@@ -25,6 +25,8 @@
 		A2924D2428302F130039BF28 /* String + extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2924D2328302F130039BF28 /* String + extension.swift */; };
 		A2924D26283032650039BF28 /* TVShow.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2924D25283032650039BF28 /* TVShow.swift */; };
 		A2B3B7562831218C001029C2 /* TitleCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */; };
+		A2B3B75F2831248F001029C2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A2B3B75E2831248F001029C2 /* SDWebImage */; };
+		A2B3B7612831248F001029C2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A2B3B7602831248F001029C2 /* SDWebImageMapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A2B3B7612831248F001029C2 /* SDWebImageMapKit in Frameworks */,
+				A2B3B75F2831248F001029C2 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,11 +85,6 @@
 			isa = PBXGroup;
 			children = (
 				A248FC40282E1CC800802DFA /* Core */,
-				A248FC2F282E19B300802DFA /* MainTabBarViewController.swift */,
-				A248FC4E282E289C00802DFA /* Models */,
-				A248FC4F282E28A200802DFA /* Views */,
-				A248FC50282E28B300802DFA /* ViewModels */,
-				A248FC45282E1F1900802DFA /* Controllers */,
 				A2924D1D28300E450039BF28 /* Services */,
 				A248FC41282E1CD100802DFA /* Resources */,
 				A2924D2228302EF20039BF28 /* Supporting Files */,
@@ -107,6 +106,10 @@
 			isa = PBXGroup;
 			children = (
 				A248FC3F282E1CBF00802DFA /* Delegates */,
+				A248FC2F282E19B300802DFA /* MainTabBarViewController.swift */,
+				A248FC4E282E289C00802DFA /* Models */,
+				A248FC4F282E28A200802DFA /* Views */,
+				A248FC50282E28B300802DFA /* ViewModels */,
 				A248FC44282E1D1300802DFA /* PropertyList */,
 			);
 			path = Core;
@@ -169,6 +172,7 @@
 		A248FC4F282E28A200802DFA /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A248FC45282E1F1900802DFA /* Controllers */,
 				A248FC51282E28E700802DFA /* CollectionViewTableViewCell.swift */,
 				A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */,
 				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
@@ -215,6 +219,10 @@
 			dependencies = (
 			);
 			name = MoviesApp;
+			packageProductDependencies = (
+				A2B3B75E2831248F001029C2 /* SDWebImage */,
+				A2B3B7602831248F001029C2 /* SDWebImageMapKit */,
+			);
 			productName = MoviesApp;
 			productReference = A248FC28282E19B300802DFA /* MoviesApp.app */;
 			productType = "com.apple.product-type.application";
@@ -243,6 +251,9 @@
 				Base,
 			);
 			mainGroup = A248FC1F282E19B300802DFA;
+			packageReferences = (
+				A2B3B75D2831248F001029C2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = A248FC29282E19B300802DFA /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -494,6 +505,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A2B3B75D2831248F001029C2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A2B3B75E2831248F001029C2 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2B3B75D2831248F001029C2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		A2B3B7602831248F001029C2 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A2B3B75D2831248F001029C2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = A248FC20282E19B300802DFA /* Project object */;
 }
