@@ -7,6 +7,14 @@
 
 import UIKit
 
+enum Sections: Int {
+    case trendingMovies = 0
+    case trendingTVShows = 1
+    case popular        = 2
+    case upcoming       = 3
+    case topRated       = 4
+}
+
 final class HomeViewController: UIViewController {
     
     // MARK: - Properties
@@ -25,11 +33,6 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNavigationBar()
-//        getTrendingMovies()
-//        getTrendingTVShows()
-//        getUpcomingMovies()
-//        getPopularMovies()
-//        getTopRatedMovies()
     }
     
     override func viewDidLayoutSubviews() {
@@ -62,57 +65,9 @@ final class HomeViewController: UIViewController {
         navigationController?.navigationBar.tintColor = .label
     }
     
-    private func getTrendingMovies() {
-        guard let url = URL(string: Constants.trendingMoviesURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<Movie>, Error>) in
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    private func getTrendingTVShows() {
-        guard let url = URL(string: Constants.trendingTVShowsURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<TVShow>, Error>) in
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    private func getUpcomingMovies() {
-        guard let url = URL(string: Constants.upcomingMoviesURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<AnotherMovie>, Error>) in
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    private func getPopularMovies() {
-        guard let url = URL(string: Constants.popularMoviesURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<AnotherMovie>, Error>) in
-            switch result {
-            case .success(let response):
-                print(response)
-            case .failure(let error):
-                print(error)
-            }
-        }
-    }
-    
-    private func getTopRatedMovies() {
-        guard let url = URL(string: Constants.topRatedURL) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<Response<AnotherMovie>, Error>) in
+    private func getData(from url: String) {
+        guard let url = URL(string: url) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<TitleResponse, Error>) in
             switch result {
             case .success(let response):
                 print(response)
@@ -135,6 +90,56 @@ extension HomeViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
+        
+        switch indexPath.section {
+        case Sections.trendingMovies.rawValue:
+            NetworkManager.shared.request(fromURL: URL(string: Constants.trendingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles.results)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        case Sections.trendingTVShows.rawValue:
+            NetworkManager.shared.request(fromURL: URL(string: Constants.trendingTVShowsURL)!) { (result: Result<TitleResponse, Error>) in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles.results)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        case Sections.popular.rawValue:
+            NetworkManager.shared.request(fromURL: URL(string: Constants.popularMoviesURL)!) { (result: Result<TitleResponse, Error>) in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles.results)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        case Sections.upcoming.rawValue:
+            NetworkManager.shared.request(fromURL: URL(string: Constants.upcomingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles.results)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        case Sections.topRated.rawValue:
+            NetworkManager.shared.request(fromURL: URL(string: Constants.topRatedURL)!) { (result: Result<TitleResponse, Error>) in
+                switch result {
+                case .success(let titles):
+                    cell.configure(with: titles.results)
+                case .failure(let error):
+                    print(error)
+                }
+            }
+        default:
+            return UITableViewCell()
+        }
         
         return cell
     }
