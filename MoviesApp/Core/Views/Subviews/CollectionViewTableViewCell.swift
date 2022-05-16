@@ -16,7 +16,7 @@ final class CollectionViewTableViewCell: UITableViewCell {
     // MARK: - Subviews
     private let collectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 300, height: 200)
+        layout.itemSize = CGSize(width: 130, height: 200)
         layout.scrollDirection = .horizontal
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.register(TitleCollectionViewCell.self, forCellWithReuseIdentifier: TitleCollectionViewCell.identifier)
@@ -53,8 +53,8 @@ final class CollectionViewTableViewCell: UITableViewCell {
     
     public func configure(with titles: [Title]) {
         self.titles = titles
-        DispatchQueue.main.async { [weak self] in
-            self?.collectionView.reloadData()
+        DispatchQueue.main.async {
+            self.collectionView.reloadData()
         }
     }
 }

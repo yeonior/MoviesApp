@@ -17,14 +17,13 @@ final class TitleCollectionViewCell: UICollectionViewCell {
     private let posterImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.contentMode = .scaleAspectFill
-        
         return imageView
     }()
     
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+        contentView.addSubview(posterImageView)
     }
     
     required init?(coder: NSCoder) {
