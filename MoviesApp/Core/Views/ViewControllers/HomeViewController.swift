@@ -8,11 +8,11 @@
 import UIKit
 
 enum Sections: Int {
-    case trendingMovies = 0
-    case trendingTVShows = 1
-    case popular        = 2
-    case upcoming       = 3
-    case topRated       = 4
+    case trendingMovies     = 0
+    case trendingTVShows    = 1
+    case popular            = 2
+    case upcoming           = 3
+    case topRated           = 4
 }
 
 final class HomeViewController: UIViewController {
@@ -97,6 +97,9 @@ extension HomeViewController: UITableViewDataSource {
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
+                    if let headerView = tableView.tableHeaderView as? HeroHeaderView {
+                        headerView.configureHeroImageView(with: titles.results.first?.posterPath)
+                    }
                 case .failure(let error):
                     print(error)
                 }
