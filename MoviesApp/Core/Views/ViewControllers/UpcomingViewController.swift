@@ -9,6 +9,9 @@ import UIKit
 
 final class UpcomingViewController: UIViewController {
     
+    // MARK: - Properties
+    private var titles: [Title] = []
+    
     // MARK: - Subviews
     private let upcomingTableView: UITableView = {
         let table = UITableView()
@@ -20,6 +23,7 @@ final class UpcomingViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchUpcoming()
     }
     
     override func viewDidLayoutSubviews() {
@@ -42,17 +46,32 @@ final class UpcomingViewController: UIViewController {
     private func configureUpcomingTableViewFrame() {
         upcomingTableView.frame = view.bounds
     }
+    
+    private func fetchUpcoming() {
+        guard let url = URL(string: Constants.upcomingMoviesURL) else { return }
+        NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<TitleResponse, Error>) in
+            switch result {
+            case .success(let titles):
+                self?.titles = titles.results
+                DispatchQueue.main.async {
+                    self?.upcomingTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
 extension UpcomingViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        20
+        titles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-        cell.textLabel?.text = "test"
+        cell.textLabel?.text = titles[indexPath.row].originalName ?? titles[indexPath.row].originalTitle ?? "N/A"
         
         return cell
     }
