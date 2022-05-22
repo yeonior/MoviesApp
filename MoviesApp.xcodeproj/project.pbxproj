@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A21AA8B7283AB65100340C97 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AA8B6283AB65100340C97 /* TitleTableViewCell.swift */; };
 		A248FC2C282E19B300802DFA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248FC2B282E19B300802DFA /* AppDelegate.swift */; };
 		A248FC2E282E19B300802DFA /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248FC2D282E19B300802DFA /* SceneDelegate.swift */; };
 		A248FC30282E19B300802DFA /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A248FC2F282E19B300802DFA /* MainTabBarViewController.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A21AA8B6283AB65100340C97 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		A248FC28282E19B300802DFA /* MoviesApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoviesApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A248FC2B282E19B300802DFA /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A248FC2D282E19B300802DFA /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 				A248FC51282E28E700802DFA /* CollectionViewTableViewCell.swift */,
 				A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */,
 				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
+				A21AA8B6283AB65100340C97 /* TitleTableViewCell.swift */,
 			);
 			path = Subviews;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A21AA8B7283AB65100340C97 /* TitleTableViewCell.swift in Sources */,
 				A2EA040B2832C489001285A3 /* Title.swift in Sources */,
 				A2B3B7562831218C001029C2 /* TitleCollectionViewCell.swift in Sources */,
 				A248FC4B282E1F8500802DFA /* SearchViewController.swift in Sources */,

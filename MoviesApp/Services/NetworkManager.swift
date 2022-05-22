@@ -12,7 +12,7 @@ protocol NetworkManagerProtocol {
 }
 
 struct Constants {
-    static let apiKey = "1c5fbab077da9b9cfca5a72db4548c5c" // you need to write down your own API key here
+    static let apiKey = "" // you need to write down your own API key here
     static let baseURL = "https://api.themoviedb.org"
     static let trendingMoviesURL = baseURL + "/3/trending/movie/day?api_key=" + apiKey
     static let trendingTVShowsURL = baseURL + "/3/trending/tv/day?api_key=" + apiKey
