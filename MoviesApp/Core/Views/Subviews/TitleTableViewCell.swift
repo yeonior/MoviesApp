@@ -15,7 +15,7 @@ final class TitleTableViewCell: UITableViewCell {
     // MARK: - Subviews
     private let titlesPosterImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.contentMode = .scaleAspectFill
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -59,6 +59,18 @@ final class TitleTableViewCell: UITableViewCell {
             titlesPosterImageView.widthAnchor.constraint(equalToConstant: 100)
         ]
         
+        let titleLabelConstraints = [
+            titleLabel.leadingAnchor.constraint(equalTo: titlesPosterImageView.trailingAnchor, constant: 20),
+            titleLabel.centerYAnchor.constraint(equalTo: contentView.centerYAnchor)
+        ]
+        
         NSLayoutConstraint.activate(titlesPosterImageViewConstraints)
+        NSLayoutConstraint.activate(titleLabelConstraints)
+    }
+    
+    public func configure(with model: TitleViewModel) {
+        guard let url = URL(string: "https://image.tmdb.org/t/p/w500" + model.posterURL) else { return }
+        titlesPosterImageView.sd_setImage(with: url)
+        titleLabel.text = model.titleName
     }
 }
