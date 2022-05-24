@@ -50,6 +50,7 @@ final class SearchViewController: UIViewController {
         discoverTableView.delegate = self
         
         navigationItem.searchController = searchController
+        navigationController?.navigationBar.tintColor = .label
     }
     
     private func configureDiscoverTableViewFrame() {
