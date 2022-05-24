@@ -19,6 +19,13 @@ final class SearchViewController: UIViewController {
         return table
     }()
     
+    private let searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: SearchResultsViewController())
+        controller.searchBar.placeholder = "Search for a movie or a TV show"
+        controller.searchBar.searchBarStyle = .minimal
+        return controller
+    }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +48,8 @@ final class SearchViewController: UIViewController {
         view.addSubview(discoverTableView)
         discoverTableView.dataSource = self
         discoverTableView.delegate = self
+        
+        navigationItem.searchController = searchController
     }
     
     private func configureDiscoverTableViewFrame() {
