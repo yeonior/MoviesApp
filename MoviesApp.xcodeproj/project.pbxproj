@@ -200,9 +200,9 @@
 		A2EA040C2832C7B2001285A3 /* Subviews */ = {
 			isa = PBXGroup;
 			children = (
+				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
 				A248FC51282E28E700802DFA /* CollectionViewTableViewCell.swift */,
 				A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */,
-				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
 				A21AA8B6283AB65100340C97 /* TitleTableViewCell.swift */,
 			);
 			path = Subviews;

@@ -31,7 +31,7 @@ final class UpcomingViewController: UIViewController {
         configureUpcomingTableViewFrame()
     }
     
-    // MARK: - Methods
+    // MARK: - Private methods
     private func configureUI() {
         title = "Upcoming"
         view.backgroundColor = .systemBackground
@@ -82,5 +82,7 @@ extension UpcomingViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension UpcomingViewController: UITableViewDelegate {
-    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        180
+    }
 }
