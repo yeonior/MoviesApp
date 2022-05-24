@@ -43,7 +43,6 @@ final class HeroHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configureUI()
-        applyConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -55,12 +54,13 @@ final class HeroHeaderView: UIView {
         configureHeroImageViewFrame()
     }
     
-    // MARK: - Methods
+    // MARK: - Private methods
     private func configureUI() {
         addSubview(heroImageView)
         addGradient()
         addSubview(playButton)
         addSubview(downloadButton)
+        applyConstraints()
     }
     
     private func configureHeroImageViewFrame() {
@@ -91,6 +91,7 @@ final class HeroHeaderView: UIView {
         NSLayoutConstraint.activate(downloadButtonConstraints)
     }
     
+    // MARK: - Public methods
     public func configureHeroImageView(with model: String?) {
         guard let model = model, let url = URL(string: "https://image.tmdb.org/t/p/w500" + model) else { return }
         heroImageView.sd_setImage(with: url, completed: nil)

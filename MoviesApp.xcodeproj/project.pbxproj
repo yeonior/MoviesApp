@@ -105,9 +105,7 @@
 			children = (
 				A248FC3F282E1CBF00802DFA /* Delegates */,
 				A2EA040D2832C7CE001285A3 /* Root */,
-				A248FC4E282E289C00802DFA /* Models */,
-				A248FC4F282E28A200802DFA /* Views */,
-				A248FC50282E28B300802DFA /* ViewModels */,
+				A2580E38283D0F62007D0783 /* Modules */,
 				A248FC44282E1D1300802DFA /* PropertyList */,
 			);
 			path = Core;
@@ -145,40 +143,133 @@
 			path = PropertyList;
 			sourceTree = "<group>";
 		};
-		A248FC45282E1F1900802DFA /* ViewControllers */ = {
-			isa = PBXGroup;
-			children = (
-				A248FC46282E1F3700802DFA /* HomeViewController.swift */,
-				A248FC48282E1F6900802DFA /* UpcomingViewController.swift */,
-				A248FC4A282E1F8500802DFA /* SearchViewController.swift */,
-				A248FC4C282E1F9E00802DFA /* DownloadsViewController.swift */,
-			);
-			path = ViewControllers;
-			sourceTree = "<group>";
-		};
-		A248FC4E282E289C00802DFA /* Models */ = {
+		A248FC4E282E289C00802DFA /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				A2EA040A2832C489001285A3 /* Title.swift */,
 			);
-			path = Models;
+			path = Model;
 			sourceTree = "<group>";
 		};
-		A248FC4F282E28A200802DFA /* Views */ = {
+		A248FC4F282E28A200802DFA /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
-				A248FC45282E1F1900802DFA /* ViewControllers */,
-				A2EA040C2832C7B2001285A3 /* Subviews */,
+				A2580E42283D126E007D0783 /* View */,
 			);
-			path = Views;
+			path = SearchModule;
 			sourceTree = "<group>";
 		};
-		A248FC50282E28B300802DFA /* ViewModels */ = {
+		A2580E38283D0F62007D0783 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				A2580E39283D0F76007D0783 /* HomeModule */,
+				A2580E3E283D112C007D0783 /* UpcomingModule */,
+				A248FC4F282E28A200802DFA /* SearchModule */,
+				A2580E43283D1277007D0783 /* DownloadsModule */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		A2580E39283D0F76007D0783 /* HomeModule */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC4E282E289C00802DFA /* Model */,
+				A2580E3A283D0FBC007D0783 /* View */,
+			);
+			path = HomeModule;
+			sourceTree = "<group>";
+		};
+		A2580E3A283D0FBC007D0783 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC46282E1F3700802DFA /* HomeViewController.swift */,
+				A2580E3B283D0FD1007D0783 /* Subviews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2580E3B283D0FD1007D0783 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A2580E3C283D10E2007D0783 /* Header */,
+				A2580E3D283D10EF007D0783 /* Cells */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A2580E3C283D10E2007D0783 /* Header */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
+			);
+			path = Header;
+			sourceTree = "<group>";
+		};
+		A2580E3D283D10EF007D0783 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC51282E28E700802DFA /* CollectionViewTableViewCell.swift */,
+				A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		A2580E3E283D112C007D0783 /* UpcomingModule */ = {
+			isa = PBXGroup;
+			children = (
+				A2580E3F283D1140007D0783 /* View */,
+				A2580E40283D1145007D0783 /* ViewModel */,
+			);
+			path = UpcomingModule;
+			sourceTree = "<group>";
+		};
+		A2580E3F283D1140007D0783 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC48282E1F6900802DFA /* UpcomingViewController.swift */,
+				A2580E41283D1169007D0783 /* Subviews */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2580E40283D1145007D0783 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
 				A257AD9D283BF6B5004D0BF4 /* TitleViewModel.swift */,
 			);
-			path = ViewModels;
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		A2580E41283D1169007D0783 /* Subviews */ = {
+			isa = PBXGroup;
+			children = (
+				A21AA8B6283AB65100340C97 /* TitleTableViewCell.swift */,
+			);
+			path = Subviews;
+			sourceTree = "<group>";
+		};
+		A2580E42283D126E007D0783 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC4A282E1F8500802DFA /* SearchViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A2580E43283D1277007D0783 /* DownloadsModule */ = {
+			isa = PBXGroup;
+			children = (
+				A2580E44283D1286007D0783 /* View */,
+			);
+			path = DownloadsModule;
+			sourceTree = "<group>";
+		};
+		A2580E44283D1286007D0783 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				A248FC4C282E1F9E00802DFA /* DownloadsViewController.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A2924D1D28300E450039BF28 /* Services */ = {
@@ -195,17 +286,6 @@
 				A2924D2328302F130039BF28 /* String + extension.swift */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A2EA040C2832C7B2001285A3 /* Subviews */ = {
-			isa = PBXGroup;
-			children = (
-				A248FC53282E3ED700802DFA /* HeroHeaderView.swift */,
-				A248FC51282E28E700802DFA /* CollectionViewTableViewCell.swift */,
-				A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */,
-				A21AA8B6283AB65100340C97 /* TitleTableViewCell.swift */,
-			);
-			path = Subviews;
 			sourceTree = "<group>";
 		};
 		A2EA040D2832C7CE001285A3 /* Root */ = {

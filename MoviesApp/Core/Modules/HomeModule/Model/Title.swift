@@ -12,7 +12,7 @@ struct TitleResponse: Codable {
     let results: [Title]
 }
 
-// MARK: - Movie
+// MARK: - Title
 struct Title: Codable {
     let id: Int
     let mediaType: String?
@@ -26,13 +26,13 @@ struct Title: Codable {
 
     enum CodingKeys: String, CodingKey {
         case id
-        case mediaType = "media_type"
-        case originalName = "original_name"
-        case originalTitle = "original_title"
-        case posterPath = "poster_path"
+        case mediaType      = "media_type"
+        case originalName   = "original_name"
+        case originalTitle  = "original_title"
+        case posterPath     = "poster_path"
         case overview
-        case voteCount = "vote_count"
-        case releaseDate = "release_date"
-        case voteAverage = "vote_average"
+        case voteCount      = "vote_count"
+        case releaseDate    = "release_date"
+        case voteAverage    = "vote_average"
     }
 }

@@ -40,13 +40,12 @@ final class HomeViewController: UIViewController {
         configureTableViewFrame()
     }
     
-    // MARK: - Methods
+    // MARK: - Private methods
     private func configureUI() {
         view.backgroundColor = .systemBackground
-        
+        view.addSubview(tableView)
         tableView.dataSource = self
         tableView.delegate = self
-        view.addSubview(tableView)
         
         let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         tableView.tableHeaderView = headerView
