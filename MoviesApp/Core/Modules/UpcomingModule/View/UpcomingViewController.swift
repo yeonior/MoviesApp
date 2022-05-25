@@ -48,7 +48,7 @@ final class UpcomingViewController: UIViewController {
     }
     
     private func fetchUpcoming() {
-        guard let url = URL(string: Constants.upcomingMoviesURL) else { return }
+        guard let url = URL(string: APIs.upcomingMoviesURL) else { return }
         NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<TitleResponse, Error>) in
             switch result {
             case .success(let titles):

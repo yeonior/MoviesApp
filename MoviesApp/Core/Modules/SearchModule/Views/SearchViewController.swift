@@ -60,7 +60,7 @@ final class SearchViewController: UIViewController {
     }
     
     private func fetchDiscoverMovies() {
-        guard let url = URL(string: Constants.discoverMovies) else { return }
+        guard let url = URL(string: APIs.discoveringMoviesURL) else { return }
         NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<TitleResponse, Error>) in
             switch result {
             case .success(let titles):
@@ -106,7 +106,7 @@ extension SearchViewController: UISearchResultsUpdating {
               !query.trimmingCharacters(in: .whitespaces).isEmpty,
               query.trimmingCharacters(in: .whitespaces).count >= 3,
               let resultsController = searchController.searchResultsController as? SearchResultsViewController,
-              let url = URL(string: Constants.searchMovies + query) else { return }
+              let url = URL(string: APIs.searchingMoviesURL + query) else { return }
         
         NetworkManager.shared.request(fromURL: url) { (result: Result<TitleResponse, Error>) in
             switch result {

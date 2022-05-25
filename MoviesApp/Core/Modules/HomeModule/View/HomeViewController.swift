@@ -92,7 +92,7 @@ extension HomeViewController: UITableViewDataSource {
         
         switch indexPath.section {
         case Sections.trendingMovies.rawValue:
-            NetworkManager.shared.request(fromURL: URL(string: Constants.trendingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
+            NetworkManager.shared.request(fromURL: URL(string: APIs.trendingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
@@ -104,7 +104,7 @@ extension HomeViewController: UITableViewDataSource {
                 }
             }
         case Sections.trendingTVShows.rawValue:
-            NetworkManager.shared.request(fromURL: URL(string: Constants.trendingTVShowsURL)!) { (result: Result<TitleResponse, Error>) in
+            NetworkManager.shared.request(fromURL: URL(string: APIs.trendingTVShowsURL)!) { (result: Result<TitleResponse, Error>) in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
@@ -113,7 +113,7 @@ extension HomeViewController: UITableViewDataSource {
                 }
             }
         case Sections.popular.rawValue:
-            NetworkManager.shared.request(fromURL: URL(string: Constants.popularMoviesURL)!) { (result: Result<TitleResponse, Error>) in
+            NetworkManager.shared.request(fromURL: URL(string: APIs.popularMoviesURL)!) { (result: Result<TitleResponse, Error>) in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
@@ -122,7 +122,7 @@ extension HomeViewController: UITableViewDataSource {
                 }
             }
         case Sections.upcoming.rawValue:
-            NetworkManager.shared.request(fromURL: URL(string: Constants.upcomingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
+            NetworkManager.shared.request(fromURL: URL(string: APIs.upcomingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
@@ -131,7 +131,7 @@ extension HomeViewController: UITableViewDataSource {
                 }
             }
         case Sections.topRated.rawValue:
-            NetworkManager.shared.request(fromURL: URL(string: Constants.topRatedURL)!) { (result: Result<TitleResponse, Error>) in
+            NetworkManager.shared.request(fromURL: URL(string: APIs.topRatedURL)!) { (result: Result<TitleResponse, Error>) in
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
