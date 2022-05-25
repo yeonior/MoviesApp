@@ -78,5 +78,20 @@ extension CollectionViewTableViewCell: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension CollectionViewTableViewCell: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        guard let titleName = title.originalTitle ?? title.originalName,
+              let query = titleName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+              let url = URL(string: APIs.getYoutubeSearchURL(with: query)) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<YoutubeSearchResponse, Error>) in
+            switch result {
+            case .success(let response):
+                print(response.items[0].id)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }
