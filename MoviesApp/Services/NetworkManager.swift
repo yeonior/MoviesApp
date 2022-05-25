@@ -20,6 +20,7 @@ struct Constants {
     static let popularMoviesURL = baseURL + "/3/movie/popular?api_key=" + apiKey + "&language=en-US&page=1"
     static let topRatedURL = baseURL + "/3/movie/top_rated?api_key=" + apiKey + "&language=en-US&page=1"
     static let discoverMovies = baseURL + "/3/discover/movie?api_key=" + apiKey + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate"
+    static let searchMovies = baseURL + "/3/search/movie?api_key=" + apiKey + "&query="
 }
 
 final class NetworkManager: NetworkManagerProtocol {

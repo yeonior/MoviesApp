@@ -10,7 +10,7 @@ import UIKit
 final class SearchResultsViewController: UIViewController {
     
     // MARK: - Properties
-    private var titles: [Title] = []
+    public var titles: [Title] = []
     
     // MARK: - Subviews
     private let searchResultsCollectionView: UICollectionView = {
@@ -45,18 +45,24 @@ final class SearchResultsViewController: UIViewController {
     private func configureCollectionViewFrame() {
         searchResultsCollectionView.frame = view.bounds
     }
+    
+    // MARK: - Public methods
+    public func reloadCollectionView() {
+        searchResultsCollectionView.reloadData()
+    }
 }
 
 // MARK: - UICollectionViewDataSource
 extension SearchResultsViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        20
+        titles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: TitleCollectionViewCell.identifier, for: indexPath) as? TitleCollectionViewCell else { return UICollectionViewCell() }
         
-        cell.backgroundColor = .orange
+        let title = titles[indexPath.row]
+        cell.configurePosterImageView(with: title.posterPath ?? "")
         
         return cell
     }
