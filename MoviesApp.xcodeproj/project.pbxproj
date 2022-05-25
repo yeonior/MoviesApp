@@ -28,6 +28,7 @@
 		A2B3B75F2831248F001029C2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = A2B3B75E2831248F001029C2 /* SDWebImage */; };
 		A2B3B7612831248F001029C2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A2B3B7602831248F001029C2 /* SDWebImageMapKit */; };
 		A2C3D306283E415200968D4D /* YoutubeSearchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C3D305283E415200968D4D /* YoutubeSearchResponse.swift */; };
+		A2C3D309283E627B00968D4D /* PreviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2C3D308283E627B00968D4D /* PreviewViewController.swift */; };
 		A2EA040B2832C489001285A3 /* Title.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2EA040A2832C489001285A3 /* Title.swift */; };
 /* End PBXBuildFile section */
 
@@ -53,6 +54,7 @@
 		A2924D2328302F130039BF28 /* String + extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String + extension.swift"; sourceTree = "<group>"; };
 		A2B3B7552831218C001029C2 /* TitleCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleCollectionViewCell.swift; sourceTree = "<group>"; };
 		A2C3D305283E415200968D4D /* YoutubeSearchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeSearchResponse.swift; sourceTree = "<group>"; };
+		A2C3D308283E627B00968D4D /* PreviewViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewViewController.swift; sourceTree = "<group>"; };
 		A2EA040A2832C489001285A3 /* Title.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Title.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -173,6 +175,7 @@
 				A2580E3E283D112C007D0783 /* UpcomingModule */,
 				A248FC4F282E28A200802DFA /* SearchModule */,
 				A2580E43283D1277007D0783 /* DownloadsModule */,
+				A2C3D307283E623800968D4D /* PreviewModule */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -297,6 +300,14 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A2C3D307283E623800968D4D /* PreviewModule */ = {
+			isa = PBXGroup;
+			children = (
+				A2C3D308283E627B00968D4D /* PreviewViewController.swift */,
+			);
+			path = PreviewModule;
+			sourceTree = "<group>";
+		};
 		A2EA040D2832C7CE001285A3 /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -392,6 +403,7 @@
 				A248FC52282E28E700802DFA /* CollectionViewTableViewCell.swift in Sources */,
 				A248FC4D282E1F9E00802DFA /* DownloadsViewController.swift in Sources */,
 				A2580E46283D313D007D0783 /* SearchResultsViewController.swift in Sources */,
+				A2C3D309283E627B00968D4D /* PreviewViewController.swift in Sources */,
 				A248FC54282E3ED700802DFA /* HeroHeaderView.swift in Sources */,
 				A248FC2C282E19B300802DFA /* AppDelegate.swift in Sources */,
 				A2C3D306283E415200968D4D /* YoutubeSearchResponse.swift in Sources */,
