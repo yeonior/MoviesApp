@@ -20,6 +20,6 @@ struct APIs {
     static let searchingMoviesURL   = tmdbBaseURL + "search/movie?api_key="          + tmdbAPIKey + "&query="
     
     static func getYoutubeSearchURL(with query: String) -> String {
-        youtubeBaseURL + "search?" + "q=\(query)&" + "key=" + youtubeAPIKey
+        youtubeBaseURL + "search?" + "q=\(query)%20trailer&" + "key=" + youtubeAPIKey
     }
 }

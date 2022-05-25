@@ -15,10 +15,13 @@ struct YoutubeSearchResponse: Codable {
 // MARK: - YoutubeVideo
 struct YoutubeVideo: Codable {
     let id: YoutubeID
-}
+    
+    struct YoutubeID: Codable {
+        let kind, videoID: String
 
-// MARK: - YoutubeID
-struct YoutubeID: Codable {
-    let kind: String
-    let videoID: String
+        enum CodingKeys: String, CodingKey {
+            case kind
+            case videoID = "videoId"
+        }
+    }
 }

@@ -153,6 +153,7 @@
 			isa = PBXGroup;
 			children = (
 				A2EA040A2832C489001285A3 /* Title.swift */,
+				A2C3D305283E415200968D4D /* YoutubeSearchResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -160,7 +161,6 @@
 		A248FC4F282E28A200802DFA /* SearchModule */ = {
 			isa = PBXGroup;
 			children = (
-				A2C3D304283E413900968D4D /* Model */,
 				A2580E42283D126E007D0783 /* Views */,
 			);
 			path = SearchModule;
@@ -295,14 +295,6 @@
 				A2924D2328302F130039BF28 /* String + extension.swift */,
 			);
 			path = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		A2C3D304283E413900968D4D /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				A2C3D305283E415200968D4D /* YoutubeSearchResponse.swift */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		A2EA040D2832C7CE001285A3 /* Root */ = {

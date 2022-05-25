@@ -33,6 +33,7 @@ final class HomeViewController: UIViewController {
         super.viewDidLoad()
         configureUI()
         configureNavigationBar()
+        getYoutubeData(with: "Dune")
     }
     
     override func viewDidLayoutSubviews() {
@@ -70,6 +71,19 @@ final class HomeViewController: UIViewController {
             switch result {
             case .success(let response):
                 print(response)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
+    private func getYoutubeData(with query: String) {
+        guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+              let url = URL(string: APIs.getYoutubeSearchURL(with: query)) else { return }
+        NetworkManager.shared.request(fromURL: url) { (result: Result<YoutubeSearchResponse, Error>) in
+            switch result {
+            case .success(let response):
+                print(response.items[0])
             case .failure(let error):
                 print(error)
             }
