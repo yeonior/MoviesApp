@@ -90,6 +90,8 @@ extension HomeViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CollectionViewTableViewCell.identifier, for: indexPath) as? CollectionViewTableViewCell else { return UITableViewCell() }
         
+        cell.delegate = self
+        
         switch indexPath.section {
         case Sections.trendingMovies.rawValue:
             NetworkManager.shared.request(fromURL: URL(string: APIs.trendingMoviesURL)!) { (result: Result<TitleResponse, Error>) in
@@ -177,5 +179,14 @@ extension HomeViewController {
         let offset = scrollView.contentOffset.y + defaultOffset
         
         navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+    }
+}
+
+// MARK: - CollectionViewTableViewCellDelegate
+extension HomeViewController: CollectionViewTableViewCellDelegate {
+    func didTapCell(_ cell: CollectionViewTableViewCell, viewModel: PreviewViewModel) {
+        let vc = PreviewViewController()
+        vc.configure(with: viewModel)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

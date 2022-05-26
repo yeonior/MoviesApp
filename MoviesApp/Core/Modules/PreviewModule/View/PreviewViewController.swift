@@ -91,4 +91,13 @@ final class PreviewViewController: UIViewController {
         NSLayoutConstraint.activate(overviewLabelConstraints)
         NSLayoutConstraint.activate(downloadButton)
     }
+    
+    // MARK: - Public methods
+    public func configure(with model: PreviewViewModel) {
+        titleLabel.text = model.title
+        overviewLabel.text = model.titleOverview
+        
+        guard let url = URL(string: "https://youtube.com/embed/\(model.youtubeView.id.videoID)") else { return }
+        webView.load(URLRequest(url: url))
+    }
 }

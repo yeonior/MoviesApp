@@ -7,11 +7,16 @@
 
 import UIKit
 
+protocol CollectionViewTableViewCellDelegate: AnyObject {
+    func didTapCell(_ cell: CollectionViewTableViewCell, viewModel: PreviewViewModel)
+}
+
 final class CollectionViewTableViewCell: UITableViewCell {
     
     // MARK: - Properties
     static let identifier = "collectionViewTableViewCell"
     private var titles: [Title] = []
+    weak var delegate: CollectionViewTableViewCellDelegate?
     
     // MARK: - Subviews
     private let collectionView: UICollectionView = {
@@ -85,10 +90,13 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate {
         guard let titleName = title.originalTitle ?? title.originalName,
               let query = titleName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
               let url = URL(string: APIs.getYoutubeSearchURL(with: query)) else { return }
-        NetworkManager.shared.request(fromURL: url) { (result: Result<YoutubeSearchResponse, Error>) in
+        NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<YoutubeSearchResponse, Error>) in
             switch result {
             case .success(let response):
-                print(response.items[0].id)
+                guard let strongSelf = self else { return }
+                let youtubeView = response.items[0]
+                let viewModel = PreviewViewModel(title: titleName, youtubeView: youtubeView, titleOverview: title.overview ?? "")
+                self?.delegate?.didTapCell(strongSelf, viewModel: viewModel)
             case .failure(let error):
                 print(error)
             }

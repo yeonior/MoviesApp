@@ -6,9 +6,9 @@
 //
 
 struct APIs {
-    private static let tmdbAPIKey       = "" // you need to write down your own API key here
+    private static let tmdbAPIKey       = "1c5fbab077da9b9cfca5a72db4548c5c"
     private static let tmdbBaseURL      = "https://api.themoviedb.org/3/"
-    private static let youtubeAPIKey    = "" // you need to write down your own API key here
+    private static let youtubeAPIKey    = "AIzaSyAex7-qIGcC62os_5y_kgqdsppwJmRpgYI"
     private static let youtubeBaseURL   = "https://youtube.googleapis.com/youtube/v3/"
     
     static let trendingMoviesURL    = tmdbBaseURL + "trending/movie/day?api_key="    + tmdbAPIKey
