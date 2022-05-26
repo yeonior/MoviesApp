@@ -21,6 +21,7 @@ final class PreviewViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 22, weight: .bold)
+        label.numberOfLines = 2
         label.text = "Text"
         return label
     }()
@@ -29,7 +30,7 @@ final class PreviewViewController: UIViewController {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.font = .systemFont(ofSize: 18, weight: .regular)
-        label.numberOfLines = 0
+        label.numberOfLines = 8
         label.text = "Another text"
         return label
     }()
@@ -71,12 +72,14 @@ final class PreviewViewController: UIViewController {
         
         let titleLabelConstraints = [
             titleLabel.topAnchor.constraint(equalTo: webView.bottomAnchor, constant: 20),
-            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            titleLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            titleLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ]
         
         let overviewLabelConstraints = [
             overviewLabel.topAnchor.constraint(equalTo: titleLabel.bottomAnchor, constant: 15),
-            overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20)
+            overviewLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            overviewLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20)
         ]
         
         let downloadButton = [
