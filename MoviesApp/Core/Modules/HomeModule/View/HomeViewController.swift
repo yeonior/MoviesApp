@@ -19,6 +19,7 @@ final class HomeViewController: UIViewController {
     
     // MARK: - Properties
     let sectionTitles = ["Trending movies", "Trending TV shows", "Popular", "Upcoming movies", "Top rated"]
+//    private var randomTrendingMovie: Title?
     
     // MARK: - Subviews
     private let tableView: UITableView = {
@@ -28,11 +29,14 @@ final class HomeViewController: UIViewController {
         return tableView
     }()
     
+    private var headerView: HeroHeaderView?
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
         configureNavigationBar()
+        configureHeroHeaderView()
     }
     
     override func viewDidLayoutSubviews() {
@@ -47,7 +51,7 @@ final class HomeViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         
-        let headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
+        headerView = HeroHeaderView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 450))
         tableView.tableHeaderView = headerView
     }
     
@@ -75,6 +79,20 @@ final class HomeViewController: UIViewController {
             }
         }
     }
+    
+    private func configureHeroHeaderView() {
+        NetworkManager.shared.request(fromURL: URL(string: APIs.trendingMoviesURL)!) { [weak self] (result: Result<TitleResponse, Error>) in
+            switch result {
+            case .success(let titles):
+                let title = titles.results.randomElement()
+//                self?.randomTrendingMovie = title
+                let viewModel = TitleViewModel(titleName: title?.originalTitle ?? "", posterURL: title?.posterPath ?? "")
+                self?.headerView?.configure(with: viewModel)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 // MARK: - UITableViewDataSource
@@ -98,9 +116,6 @@ extension HomeViewController: UITableViewDataSource {
                 switch result {
                 case .success(let titles):
                     cell.configure(with: titles.results)
-                    if let headerView = tableView.tableHeaderView as? HeroHeaderView {
-                        headerView.configureHeroImageView(with: titles.results.first?.posterPath)
-                    }
                 case .failure(let error):
                     print(error)
                 }
