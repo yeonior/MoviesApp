@@ -20,6 +20,7 @@ final class HomeViewController: UIViewController {
     // MARK: - Properties
     let sectionTitles = ["Trending movies", "Trending TV shows", "Popular", "Upcoming movies", "Top rated"]
 //    private var randomTrendingMovie: Title?
+    private var navigationBarOffset = 0.0
     
     // MARK: - Subviews
     private let tableView: UITableView = {
@@ -42,6 +43,16 @@ final class HomeViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         configureTableViewFrame()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -navigationBarOffset))
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: 0)
     }
     
     // MARK: - Private methods
@@ -192,8 +203,8 @@ extension HomeViewController {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let defaultOffset = view.safeAreaInsets.top
         let offset = scrollView.contentOffset.y + defaultOffset
-        
-        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -offset))
+        navigationBarOffset = offset
+        navigationController?.navigationBar.transform = .init(translationX: 0, y: min(0, -navigationBarOffset))
     }
 }
 
