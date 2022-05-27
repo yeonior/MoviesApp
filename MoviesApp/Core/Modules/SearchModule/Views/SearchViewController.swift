@@ -44,13 +44,13 @@ final class SearchViewController: UIViewController {
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationItem.largeTitleDisplayMode = .always
+        navigationController?.navigationBar.tintColor = .label
         
         view.addSubview(discoverTableView)
         discoverTableView.dataSource = self
         discoverTableView.delegate = self
         
         navigationItem.searchController = searchController
-        navigationController?.navigationBar.tintColor = .label
         
         searchController.searchResultsUpdater = self
     }
@@ -95,6 +95,28 @@ extension SearchViewController: UITableViewDataSource {
 extension SearchViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         180
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        
+        guard let titleName = title.originalTitle ?? title.originalName,
+              let query = titleName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+              let url = URL(string: APIs.getYoutubeSearchURL(with: query)) else { return }
+        NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<YoutubeSearchResponse, Error>) in
+            switch result {
+            case .success(let response):
+                let youtubeView = response.items[0]
+                let vc = PreviewViewController()
+                let viewModel = PreviewViewModel(title: titleName, youtubeView: youtubeView, titleOverview: title.overview ?? "")
+                vc.configure(with: viewModel)
+                self?.navigationController?.pushViewController(vc, animated: true)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
 
