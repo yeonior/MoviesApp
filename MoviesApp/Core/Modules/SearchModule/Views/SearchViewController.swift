@@ -43,7 +43,7 @@ final class SearchViewController: UIViewController {
         title = "Search"
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.tintColor = .label
         
         view.addSubview(discoverTableView)
@@ -130,6 +130,8 @@ extension SearchViewController: UISearchResultsUpdating {
               let resultsController = searchController.searchResultsController as? SearchResultsViewController,
               let url = URL(string: APIs.searchingMoviesURL + query) else { return }
         
+        resultsController.delegate = self
+        
         NetworkManager.shared.request(fromURL: url) { (result: Result<TitleResponse, Error>) in
             switch result {
             case .success(let titles):
@@ -139,5 +141,14 @@ extension SearchViewController: UISearchResultsUpdating {
                 print(error.localizedDescription)
             }
         }
+    }
+}
+
+// MARK: - SearchResultsViewControllerDelegate
+extension SearchViewController: SearchResultsViewControllerDelegate {
+    func didTapItem(_ viewModel: PreviewViewModel) {
+        let vc = PreviewViewController()
+        vc.configure(with: viewModel)
+        navigationController?.pushViewController(vc, animated: true)
     }
 }

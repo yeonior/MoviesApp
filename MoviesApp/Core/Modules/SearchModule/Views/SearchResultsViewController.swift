@@ -7,10 +7,15 @@
 
 import UIKit
 
+protocol SearchResultsViewControllerDelegate: AnyObject {
+    func didTapItem(_ viewModel: PreviewViewModel)
+}
+
 final class SearchResultsViewController: UIViewController {
     
     // MARK: - Properties
     public var titles: [Title] = []
+    public weak var delegate: SearchResultsViewControllerDelegate?
     
     // MARK: - Subviews
     private let searchResultsCollectionView: UICollectionView = {
@@ -70,5 +75,24 @@ extension SearchResultsViewController: UICollectionViewDataSource {
 
 // MARK: - UICollectionViewDelegate
 extension SearchResultsViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        
+        guard let titleName = title.originalTitle ?? title.originalName,
+              let query = titleName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+              let url = URL(string: APIs.getYoutubeSearchURL(with: query)) else { return }
+        NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<YoutubeSearchResponse, Error>) in
+            switch result {
+            case .success(let response):
+                let youtubeView = response.items[0]
+                
+                let viewModel = PreviewViewModel(title: titleName, youtubeView: youtubeView, titleOverview: title.overview ?? "")
+                self?.delegate?.didTapItem(viewModel)
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
 }

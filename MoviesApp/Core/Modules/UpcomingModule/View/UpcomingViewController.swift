@@ -36,7 +36,7 @@ final class UpcomingViewController: UIViewController {
         title = "Upcoming"
         view.backgroundColor = .systemBackground
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationItem.largeTitleDisplayMode = .automatic
+        navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.tintColor = .label
         
         view.addSubview(upcomingTableView)
