@@ -22,8 +22,11 @@ final class DownloadsViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureUI()
+        configureUI()   
         fetchLocalStorageForDownload()
+        NotificationCenter.default.addObserver(forName: NSNotification.Name("downloaded"), object: nil, queue: nil) { _ in
+            self.fetchLocalStorageForDownload()
+        }
     }
     
     override func viewDidLayoutSubviews() {
@@ -83,6 +86,28 @@ extension DownloadsViewController: UITableViewDataSource {
 extension DownloadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         180
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let title = titles[indexPath.row]
+        
+        guard let titleName = title.originalTitle ?? title.originalName,
+              let query = titleName.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed),
+              let url = URL(string: APIs.getYoutubeSearchURL(with: query)) else { return }
+        NetworkManager.shared.request(fromURL: url) { [weak self] (result: Result<YoutubeSearchResponse, Error>) in
+            switch result {
+            case .success(let response):
+                let youtubeView = response.items[0]
+                let vc = PreviewViewController()
+                let viewModel = PreviewViewModel(title: titleName, youtubeView: youtubeView, titleOverview: title.overview ?? "")
+                vc.configure(with: viewModel)
+                self?.navigationController?.pushViewController(vc, animated: true)
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
