@@ -56,6 +56,10 @@ final class CollectionViewTableViewCell: UITableViewCell {
         collectionView.frame = contentView.bounds
     }
     
+    private func downloadTitleAt(indexPath: IndexPath) {
+        print("Downloading \(titles[indexPath.row].originalTitle ?? titles[indexPath.row].originalName ?? "")")
+    }
+    
     public func configure(with titles: [Title]) {
         self.titles = titles
         DispatchQueue.main.async {
@@ -106,8 +110,8 @@ extension CollectionViewTableViewCell: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, contextMenuConfigurationForItemAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
         
         let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
-            let downloadAction = UIAction(title: "Download", subtitle: nil, image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { _ in
-                print("Download tapped")
+            let downloadAction = UIAction(title: "Download", subtitle: nil, image: nil, identifier: nil, discoverabilityTitle: nil, state: .off) { [weak self] _ in
+                self?.downloadTitleAt(indexPath: indexPath)
             }
             return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])
         }
