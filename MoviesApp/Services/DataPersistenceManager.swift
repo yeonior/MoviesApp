@@ -12,6 +12,7 @@ final class DataPersistenceManager {
     enum DatabaseError: Error {
         case failedToSaveData
         case failedToFetchData
+        case failedToDeleteData
     }
     
     // MARK: - Properties
@@ -58,17 +59,15 @@ final class DataPersistenceManager {
         item.voteAverage = model.voteAverage
         item.voteCount = Int64(model.voteCount)
         
-        if context.hasChanges {
-            do {
-                try context.save()
-                completion(.success(()))
-            } catch {
-                completion(.failure(DatabaseError.failedToSaveData))
-            }
+        do {
+            try context.save()
+            completion(.success(()))
+        } catch {
+            completion(.failure(DatabaseError.failedToSaveData))
         }
     }
     
-    func fetchingTitlesFromDatabase(completion: @escaping (Result<[TitleItem], Error>) -> Void) {
+    func fetchTitles(completion: @escaping (Result<[TitleItem], Error>) -> Void) {
         
         let request = TitleItem.fetchRequest()
         
@@ -77,6 +76,18 @@ final class DataPersistenceManager {
             completion(.success(titles))
         } catch {
             completion(.failure(DatabaseError.failedToFetchData))
+        }
+    }
+    
+    func deleteTitleWith(model: TitleItem, completion: @escaping (Result<Void, Error>) -> Void) {
+        
+        context.delete(model)
+        
+        do {
+            try context.save()
+            completion(.success(()))
+        } catch {
+            completion(.failure(DatabaseError.failedToDeleteData))
         }
     }
 }

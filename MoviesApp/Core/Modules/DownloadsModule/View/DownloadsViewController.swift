@@ -49,7 +49,7 @@ final class DownloadsViewController: UIViewController {
     }
     
     private func fetchLocalStorageForDownload() {
-        DataPersistenceManager.shared.fetchingTitlesFromDatabase { [weak self] result in
+        DataPersistenceManager.shared.fetchTitles { [weak self] result in
             switch result {
             case .success(let titles):
                 self?.titles = titles
@@ -83,5 +83,23 @@ extension DownloadsViewController: UITableViewDataSource {
 extension DownloadsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         180
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        switch editingStyle {
+        case .delete:
+            DataPersistenceManager.shared.deleteTitleWith(model: titles[indexPath.row]) { result in
+                switch result {
+                case .success(()):
+                    print("Deleted from database")
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            titles.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        default:
+            break
+        }
     }
 }
