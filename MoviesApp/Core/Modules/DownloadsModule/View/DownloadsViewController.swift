@@ -23,6 +23,12 @@ final class DownloadsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureUI()
+        fetchLocalStorageForDownload()
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        configureDownloadTableViewFrame()
     }
     
     // MARK: - Private methods
@@ -33,8 +39,27 @@ final class DownloadsViewController: UIViewController {
         navigationController?.navigationItem.largeTitleDisplayMode = .always
         navigationController?.navigationBar.tintColor = .label
         
+        view.addSubview(downloadsTableView)
         downloadsTableView.dataSource = self
         downloadsTableView.delegate = self
+    }
+    
+    private func configureDownloadTableViewFrame() {
+        downloadsTableView.frame = view.bounds
+    }
+    
+    private func fetchLocalStorageForDownload() {
+        DataPersistenceManager.shared.fetchingTitlesFromDatabase { [weak self] result in
+            switch result {
+            case .success(let titles):
+                self?.titles = titles
+                DispatchQueue.main.async {
+                    self?.downloadsTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
 }
 

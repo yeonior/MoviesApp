@@ -9,9 +9,10 @@ import CoreData
 
 final class DataPersistenceManager {
     
-//    enum DatabaseError: Error {
-//        case failed
-//    }
+    enum DatabaseError: Error {
+        case failedToSaveData
+        case failedToFetchData
+    }
     
     // MARK: - Properties
     static let shared = DataPersistenceManager()
@@ -62,9 +63,20 @@ final class DataPersistenceManager {
                 try context.save()
                 completion(.success(()))
             } catch {
-                let nserror = error as NSError
-                completion(.failure(nserror))
+                completion(.failure(DatabaseError.failedToSaveData))
             }
+        }
+    }
+    
+    func fetchingTitlesFromDatabase(completion: @escaping (Result<[TitleItem], Error>) -> Void) {
+        
+        let request = TitleItem.fetchRequest()
+        
+        do {
+            let titles = try context.fetch(request)
+            completion(.success(titles))
+        } catch {
+            completion(.failure(DatabaseError.failedToFetchData))
         }
     }
 }
